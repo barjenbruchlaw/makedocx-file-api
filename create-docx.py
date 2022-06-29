@@ -1,7 +1,7 @@
 from dataclasses import replace
 from docx import Document
 
-document = Document("Judgment - Jackson County.docx")
+document = Document("message-template.docx")
 
 paragraphs = document.paragraphs
 
@@ -10,9 +10,9 @@ replacement_field_map_rough = list()
 for a in paragraphs:
     replace_index = [0]
     next_line = a.text
-    next_index = (next_line.find("{{", replace_index[-1]))-1
+    next_index = next_line.find("{{", replace_index[-1])
     replace_index.append(next_index)
-    if replace_index[-1] != -2:
+    if replace_index[-1] != -1:
         close_replace_index = [0]
         close_index = next_line.find("}}", close_replace_index[-1])
         close_replace_index.append(close_index+2)
@@ -22,7 +22,7 @@ for a in paragraphs:
 replacement_field_map = list()
 
 for b in replacement_field_map_rough:
-    if b[1] == -2:
+    if b[1] == -1:
         replacement_field_map.append(False)
     else:
         replacement_field_map_entry = [True]
@@ -42,13 +42,8 @@ for c in range(len(replacement_field_map)):
     if replacement_field_map[c] != False:
         scanned_line = paragraphs[c].text
         search_item_coords = get_coords(replacement_field_map[c])
-        if search_item_coords[0] == -1:
-            search_item_coords[0] = 0
         search_item = scanned_line[search_item_coords[0]:search_item_coords[1]]
-        search_item_list.append(search_item)
+        search_item_index = [c, search_item_coords, search_item]
+        search_item_list.append(search_item_index)
 
-print(replacement_field_map)
-selected_line = paragraphs[2].text
-selected_search_term = selected_line[4:22]
-print(selected_search_term)
 print(search_item_list)
