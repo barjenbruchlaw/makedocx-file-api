@@ -49,3 +49,16 @@ while g <= last_key:
         print(g)
     g+=1
 
+table = document.tables[0]
+
+table_matrix = []
+
+for row in table.rows:
+    table_row = []
+    for cell in row.cells:
+        table_row.append(cell.text)
+    table_matrix.append(table_row)
+
+print(table_matrix)
+
+print(len(document.tables))
