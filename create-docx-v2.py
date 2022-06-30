@@ -44,8 +44,6 @@ for a in range(len(paragraphs)):
         replacement_dict.update(
             {a: [all_braces_index, search_term_index, next_line]})
 
-print(replacement_dict)
-
 j = 0
 
 while j < paragraph_count:
