@@ -2,7 +2,7 @@ from dataclasses import replace
 from datetime import datetime
 from docx import Document
 
-document = Document("message-template.docx")
+document = Document("Judgment - Jackson County.docx")
 
 paragraphs = document.paragraphs
 
@@ -14,9 +14,10 @@ now = datetime.now()
 dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
 
 static_term_dict = {
-    "{{ name }}": "Fred Jones",
-    "{{ datetime }}": dt_string,
-    "{{ message }}": "Hello world!  This is a generated Word document.",
+    "{{Street Address}}": "12345 Main Street",
+    "{{City}}": "Kansas City",
+    "{{ZIP}}": "64114",
+    "{{Monthly Rent}}": "$1,000.00",
 }
 
 replacement_dict = dict()
@@ -47,14 +48,19 @@ for a in range(len(paragraphs)):
 j = 0
 
 while j < paragraph_count:
+    edit_paragraph = paragraphs[j].text
     if j in replacement_dict:
-        replaced_term = replacement_dict[j][1][0]
-        replacing_term = static_term_dict[replaced_term]
-        new_paragraph = replacement_dict[j][2].replace(
-            replaced_term, replacing_term)
+        for each_term in replacement_dict[j][1]:
+            replaced_term = each_term
+            if replaced_term in static_term_dict:
+                replacing_term = static_term_dict[replaced_term]
+                new_paragraph=edit_paragraph.replace(replaced_term, replacing_term)
+            else:
+                new_paragraph=edit_paragraph.replace(replaced_term, "")
+            edit_paragraph=new_paragraph
         paragraphs[j].clear()
         paragraphs[j].add_run(text=new_paragraph)
-    j += 1
+    j+=1
 
 key_list = list()
 
@@ -65,19 +71,20 @@ key_list.sort()
 
 last_key = key_list[-1]
 
+table_matrix_dict = dict()
+
 if table_count > 0:
-    table = document.tables[0]
     table_matrix = []
-
-    for row in table.rows:
-        table_row = []
-        for cell in row.cells:
-            table_row.append(cell.text)
-        table_matrix.append(table_row)
-
-    print(table_matrix)
+    for x, table in enumerate(document.tables):
+        for row in table.rows:
+            table_row = []
+            for cell in row.cells:
+                table_row.append(cell.text)
+            table_matrix.append(table_row)
+    table_matrix_dict[x] = table_matrix
 
 print("paragraph count = "+str(paragraph_count))
 print("table count = "+str(table_count))
+print(table_matrix_dict)
 
 document.save('new-message.docx')
