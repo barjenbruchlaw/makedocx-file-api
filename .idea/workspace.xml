@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="32b65844-eb5f-4afb-9470-043fd528241b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Judgment - Jackson County.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Judgment - Jackson County.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docx-dissector.py" beforeDir="false" afterPath="$PROJECT_DIR$/docx-dissector.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,7 +52,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "last_opened_file_path": "G:/CodingZone/makedocx-file-api",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "F:/CodingZone/makedocx-file-api",
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
