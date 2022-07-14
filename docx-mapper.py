@@ -34,6 +34,19 @@ for table_count, table in enumerate(tables):
             table_map_cell = table_map_row[cell_count]
             paragraphs = cell.paragraphs
             for paragraph_count, paragraph in enumerate(paragraphs):
-                table_map_cell.append([paragraph_count, paragraph.text])
+                table_map_cell.append(list())
+                table_map_cell_paragraph = table_map_cell[paragraph_count]
+                runs = paragraph.runs
+                for run_count, run in enumerate(runs):
+                    run_element_list = ['bold', 'italic', 'underline', 'font.subscript', 'font.superscript',
+                                        'font.highlight_color', 'font.strike', 'font.double_strike', 'font.emboss',
+                                        'font.imprint', 'font.outline', 'font.shadow', 'font.name', 'font.size']
+                    table_map_cell_paragraph.append([run_count, dict()])
+                    table_map_run_entry = table_map_cell_paragraph[run_count][1]
+                    table_map_run_entry.update({'text': run.text})
+                    for run_element in run_element_list:
+                        run_element_search = f'run.{run_element}'
+                        if eval(run_element_search, {}, {'run': run}) != None:
+                            table_map_run_entry.update({run_element: eval(run_element_search, {}, {'run': run})})
 
 print(table_map)

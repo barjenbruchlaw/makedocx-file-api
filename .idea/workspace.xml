@@ -8,9 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32b65844-eb5f-4afb-9470-043fd528241b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/docx-mapper.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docx-dissector.py" beforeDir="false" afterPath="$PROJECT_DIR$/docx-dissector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docx-mapper.py" beforeDir="false" afterPath="$PROJECT_DIR$/docx-mapper.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
