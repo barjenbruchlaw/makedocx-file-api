@@ -20,15 +20,12 @@ for paragraph_count, paragraph in enumerate(paragraphs):
     document_diagram_paragraph_entry = document_diagram[paragraph_count+1][1]
     document_diagram_paragraph_entry.append(dict())
     document_diagram_paragraph_format_elements = document_diagram_paragraph_entry[0]
-    document_diagram_paragraph_format_elements.update({'alignment': paragraph.paragraph_format.alignment})
-    document_diagram_paragraph_format_elements.update({'first line indent': paragraph.paragraph_format.first_line_indent})
-    document_diagram_paragraph_format_elements.update({'left indent': paragraph.paragraph_format.left_indent})
-    document_diagram_paragraph_format_elements.update({'line spacing': paragraph.paragraph_format.line_spacing})
-    document_diagram_paragraph_format_elements.update({'line spacing rule': paragraph.paragraph_format.line_spacing_rule})
-    document_diagram_paragraph_format_elements.update({'page break before': paragraph.paragraph_format.page_break_before})
-    document_diagram_paragraph_format_elements.update({'right indent': paragraph.paragraph_format.right_indent})
-    document_diagram_paragraph_format_elements.update({'space before': paragraph.paragraph_format.space_before})
-    document_diagram_paragraph_format_elements.update({'space after': paragraph.paragraph_format.space_after})
+    paragraph_elements_list = ['alignment', 'first_line_indent', 'left_indent', 'line_spacing', 'page_break_before', 'right_indent', 'space_before', 'space_after']
+
+    for paragraph_element in paragraph_elements_list:
+        paragraph_element_search = f'paragraph.paragraph_format.{paragraph_element}'
+        document_diagram_paragraph_format_elements.update({paragraph_element: exec(paragraph_element_search)})
+
     runs = paragraph.runs
     for run_count, run in enumerate(runs):
         document_diagram_paragraph_entry.append([run_count, dict()])
