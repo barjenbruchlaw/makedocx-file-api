@@ -1,0 +1,3 @@
+from database import get_templates_function
+
+get_templates_function()

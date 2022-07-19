@@ -2,3 +2,4 @@ python-docx
 fastapi
 uvicorn
 sqlalchemy
+pydantic

@@ -9,10 +9,14 @@ time_now = datetime.now()
 time_stamp = time_now.strftime('%Y-%m-%d_%H%M%S')
 
 #Main function start
-def template_generator(docx_template_file,docx_output_filename='New File '+time_stamp):
+def template_generator(docx_template_file,docx_template_name,docx_output_filename='New File '+time_stamp):
 
 #   Adds the provided template path and output file name to the template parameter dict
-    template_dict.update({'template path': './'+docx_template_file,'output file name': docx_output_filename})
+    template_dict.update({
+        'template_path_field': './'+docx_template_file,
+        'template_name_field': docx_template_name,
+        'output_filename_field': docx_output_filename,
+    })
 
 #   Starts a new list to hold runs to be replaced
     replacement_field_list = list()
@@ -45,5 +49,5 @@ def template_generator(docx_template_file,docx_output_filename='New File '+time_
                 replacement_field_list.append(run_dict)
 
 #   Adds runs to be replaced to main dictionary
-    template_dict.update({'update runs': replacement_field_list})
+    template_dict.update({'update_runs_field': replacement_field_list})
     return template_dict
