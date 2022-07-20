@@ -9,17 +9,14 @@ Session = sessionmaker()
 Session.configure(bind=engine,autocommit=False,autoflush=False)
 session = Session()
 
-# def get_templates():
-#     templates_by_id = get_templates_by_id(session)
-#     for row in templates_by_id:
-#         print(f"Id: {row.id}, Template name: {row.template_name}")
-
 def add_new_template_function(new_template_submission):
     new_template = Template(
         template_path=new_template_submission['template_path_field'],
         template_name=new_template_submission['template_name_field'],
         output_filename=new_template_submission['output_filename_field'],
-        update_runs=str(new_template_submission['update_runs_field'])
+        # update_runs should NOT be formatted as a string in the final format for PostGreSQL -- this is for SQLite testing only
+        update_paragraph_runs=str(new_template_submission['update_paragraph_runs_field']),
+        update_table_runs=str(new_template_submission['update_table_runs_field']),
     )
     session.add(new_template)
     session.commit()

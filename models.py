@@ -10,5 +10,6 @@ class Template(Base):
     template_path = Column(String)
     template_name = Column(String)
     output_filename = Column(String)
-    update_runs=Column(String)
+    update_paragraph_runs=Column(String)
+    update_table_runs=Column(String)
 

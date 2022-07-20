@@ -8,18 +8,22 @@ template_dict = dict()
 time_now = datetime.now()
 time_stamp = time_now.strftime('%Y-%m-%d_%H%M%S')
 
+run_element_list = ['bold', 'italic', 'underline', 'font.subscript', 'font.superscript',
+                    'font.highlight_color', 'font.strike', 'font.double_strike', 'font.emboss',
+                    'font.imprint','font.outline', 'font.shadow', 'font.name', 'font.size']
+
 #Main function start
 def template_generator(docx_template_file,docx_template_name,docx_output_filename='New File '+time_stamp):
 
 #   Adds the provided template path and output file name to the template parameter dict
     template_dict.update({
-        'template_path_field': './'+docx_template_file,
+        'template_path_field': docx_template_file,
         'template_name_field': docx_template_name,
         'output_filename_field': docx_output_filename,
     })
 
 #   Starts a new list to hold runs to be replaced
-    replacement_field_list = list()
+    replacement_paragraph_field_list = list()
 
 #   Loads document from first parameter
     document = Document(docx_template_file)
@@ -39,15 +43,50 @@ def template_generator(docx_template_file,docx_template_name,docx_output_filenam
                 run_dict.update({'paragraph':paragraph_count,'run': run_count,'text': run.text})
 
 #       Uses a list of run elements and a loop function for ease of adding or removing searched elements
-                run_element_list = ['bold', 'italic', 'underline', 'font.subscript', 'font.superscript',
-                                    'font.highlight_color', 'font.strike', 'font.double_strike', 'font.emboss',
-                                    'font.imprint','font.outline', 'font.shadow', 'font.name', 'font.size']
                 for run_element in run_element_list:
                     run_element_search = f'run.{run_element}'
                     if eval(run_element_search, {}, {'run': run}) != None:
                         run_dict.update({run_element: eval(run_element_search, {}, {'run': run})})
-                replacement_field_list.append(run_dict)
+                replacement_paragraph_field_list.append(run_dict)
 
 #   Adds runs to be replaced to main dictionary
-    template_dict.update({'update_runs_field': replacement_field_list})
+    template_dict.update({'update_paragraph_runs_field': replacement_paragraph_field_list})
+
+#   Performs similar function for tables.  Tables are broken into rows, cells, paragraphs and runs.
+
+    replacement_table_field_list = list()
+
+    tables = document.tables
+
+    for table_count, table in enumerate(tables):
+        rows = table.rows
+        for row_count, row in enumerate(rows):
+            cells = row.cells
+            for cell_count, cell in enumerate(cells):
+
+#               The prior operation is basically repeated here with new variable names.
+                cell_paragraphs = cell.paragraphs
+                for cell_paragraph_count, cell_paragraph in enumerate(cell_paragraphs):
+                    cell_runs = cell_paragraph.runs
+                    for cell_run_count, cell_run in enumerate(cell_runs):
+                        if "{{" in cell_run.text:
+                            cell_run_dict = dict()
+
+#                           The additional elements are tracked in the dictionary.
+                            cell_run_dict.update({
+                                'table':table_count,
+                                'row':row_count,
+                                'cell':cell_count,
+                                'paragraph':cell_paragraph_count,
+                                'run':cell_run_count,
+                                'text':cell_run.text
+                            })
+                            for run_element in run_element_list:
+                                cell_run_element_search = f'cell_run.{run_element}'
+                                if eval(cell_run_element_search, {}, {'cell_run':cell_run}) != None:
+                                    cell_run_dict.update({run_element: eval(cell_run_element_search, {}, {'cell_run': cell_run})})
+                            replacement_table_field_list.append(cell_run_dict)
+
+    template_dict.update({'update_table_runs_field': replacement_table_field_list})
+
     return template_dict
