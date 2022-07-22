@@ -15,6 +15,5 @@ def find_terms(text):
         while i < len(all_braces_index):
             next_search_term = text[all_braces_index[i]:all_braces_index[i+1]]
             search_term_index.append(next_search_term)
-            print(search_term_index)
             i += 2
     return search_term_index
