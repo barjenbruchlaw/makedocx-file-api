@@ -7,12 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32b65844-eb5f-4afb-9470-043fd528241b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/rebuild_run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/document_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/document_generator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/find_replacement_terms.py" beforeDir="false" afterPath="$PROJECT_DIR$/find_replacement_terms.py" afterDir="false" />
-    </list>
+    <list default="true" id="32b65844-eb5f-4afb-9470-043fd528241b" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
