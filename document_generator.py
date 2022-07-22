@@ -6,6 +6,7 @@ from sqlalchemy.orm import sessionmaker
 from models import Template
 from database import get_templates_function
 from find_replacement_terms import find_terms
+from sample_values import sample_values
 
 SQLALCHEMY_DATABASE_URL = 'sqlite:///./templates.db'
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
@@ -23,16 +24,10 @@ raw_update_paragraph_runs = template_entry.update_paragraph_runs
 
 update_paragraph_runs_final = string2dict(raw_update_paragraph_runs)
 
-sample_values = dict({
-    "{{name}}": "Brian Barjenbruch",
-    "{{message}}": "Hello, world!"
-})
-
+term_dictionary = sample_values
 time_now = datetime.now()
 time_stamp = time_now.strftime('%Y-%m-%d_%H%M%S')
-sample_values.update({"{{datetimestamp}}": time_stamp})
-
-term_dictionary = sample_values
+term_dictionary.update({"{{datetimestamp}}": time_stamp})
 
 template_doc=template_entry.template_path
 
@@ -52,9 +47,9 @@ for template_paragraph_count,template_paragraph in enumerate(template_paragraphs
                     replacing_term = term_dictionary[each_term]
                     new_text_entry=new_text[-1].replace(each_term,replacing_term)
                     new_text.append(new_text_entry)
-        new_run_text=new_text[-1]
-        template_run.clear()
-        template_paragraph.add_run(text=new_run_text)
+                new_run_text=new_text[-1]
+                template_run.clear()
+                template_paragraph.add_run(text=new_run_text)
 
 output_filename_template=template_entry.output_filename
 output_filename_entry = [output_filename_template]

@@ -1,0 +1,16 @@
+sample_values = {
+    '{{Judgment Date}}': 'July 21, 2022',
+    '{{Plaintiff}}': 'ABC Property Management, LLC',
+    '{{Defendant 1}}': 'John Smith',
+    '{{Street Address}}': '12345 Main Street #101',
+    '{{City}}': 'Kansas City',
+    '{{Judgment Rent}}': '$3,000.00',
+    '{{Judgment Late}}': '$300.00',
+    '{{Judgment Util}}': '$225.00',
+    '{{Judgment Addl}}': '$0.00',
+    '{{Judgment Atty}}': '$300.00',
+    '{{Judgment SPS}}': '$75.00',
+    '{{Judgment Costs}}': '$63.00',
+    '{{Judgment TOTAL}}': '$3,963.00',
+    '{{Monthly Rent}}': '$1,000.00',
+}
