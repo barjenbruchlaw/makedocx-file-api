@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, JSON
 from sqlalchemy.ext.declarative import declarative_base
 
 
@@ -10,6 +10,7 @@ class Template(Base):
     template_path = Column(String)
     template_name = Column(String)
     output_filename = Column(String)
-    update_paragraph_runs=Column(String)
-    update_table_runs=Column(String)
+    update_paragraph_runs=Column(JSON)
+    update_table_runs=Column(JSON)
+
 

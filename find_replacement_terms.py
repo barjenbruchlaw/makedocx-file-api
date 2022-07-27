@@ -13,7 +13,11 @@ def find_terms(text):
         all_braces_index.sort()
         i = 0
         while i < len(all_braces_index):
-            next_search_term = text[all_braces_index[i]:all_braces_index[i+1]]
-            search_term_index.append(next_search_term)
-            i += 2
+            if len(all_braces_index)<2:
+                i += 2
+                continue
+            else:
+                next_search_term = text[all_braces_index[i]:all_braces_index[i+1]]
+                search_term_index.append(next_search_term)
+                i += 2
     return search_term_index

@@ -8,10 +8,6 @@ template_dict = dict()
 time_now = datetime.now()
 time_stamp = time_now.strftime('%Y-%m-%d_%H%M%S')
 
-run_element_list = ['bold', 'italic', 'underline', 'font.subscript', 'font.superscript',
-                    'font.highlight_color', 'font.strike', 'font.double_strike', 'font.emboss',
-                    'font.imprint','font.outline', 'font.shadow', 'font.name', 'font.size']
-
 #Main function start
 def template_generator(docx_template_file,docx_template_name,docx_output_filename='New File '+time_stamp):
 
@@ -41,12 +37,6 @@ def template_generator(docx_template_file,docx_template_name,docx_output_filenam
             if "{{" in run.text:
                 run_dict = dict()
                 run_dict.update({'paragraph':paragraph_count,'run': run_count,'text': run.text})
-
-#       Uses a list of run elements and a loop function for ease of adding or removing searched elements
-                for run_element in run_element_list:
-                    run_element_search = f'run.{run_element}'
-                    if eval(run_element_search, {}, {'run': run}) != None:
-                        run_dict.update({run_element: eval(run_element_search, {}, {'run': run})})
                 replacement_paragraph_field_list.append(run_dict)
 
 #   Adds runs to be replaced to main dictionary
@@ -81,12 +71,7 @@ def template_generator(docx_template_file,docx_template_name,docx_output_filenam
                                 'run':cell_run_count,
                                 'text':cell_run.text
                             })
-                            for run_element in run_element_list:
-                                cell_run_element_search = f'cell_run.{run_element}'
-                                if eval(cell_run_element_search, {}, {'cell_run':cell_run}) != None:
-                                    cell_run_dict.update({run_element: eval(cell_run_element_search, {}, {'cell_run': cell_run})})
                             replacement_table_field_list.append(cell_run_dict)
-
     template_dict.update({'update_table_runs_field': replacement_table_field_list})
 
     return template_dict
