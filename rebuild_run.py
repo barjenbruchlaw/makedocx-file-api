@@ -9,9 +9,13 @@ def rebuild_run(old_run,term_dictionary):
         replacing_term = term_dictionary_final[each_term]
         new_text_entry = new_text_array[-1].replace(each_term, replacing_term)
         new_text_array.append(new_text_entry)
-    new_text = new_text_array[-1]
+    new_text_0 = new_text_array[-1]
+    new_text_1 = new_text_0.replace('\n\n\n\n', '\n')
+    new_text_2 = new_text_1.replace('\n\n\n', '\n')
+    new_text_3 = new_text_2.replace('\n\n', '\n')
+    new_text_4 = new_text_3.replace(', , , ,', ', ')
     new_run = old_run
-    new_run.text = new_text
+    new_run.text = new_text_4
     return new_run
 
 def add_caps_to_dict(term_dictionary):

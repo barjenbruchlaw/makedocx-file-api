@@ -55,7 +55,8 @@ for template_paragraph_count,template_paragraph in enumerate(template_paragraphs
           for update_paragraph_run in update_paragraph_runs_final:
             if update_paragraph_run["paragraph"] == template_paragraph_count and update_paragraph_run["run"] == template_run_count:
                 new_run = rebuild_run(template_run,term_dictionary)
-                if new_run.text == '\n' or new_run.text == '' or new_run.text == '\r':
+                if new_run.text == '':
+                    print("Blank run!")
                     template_run.clear()
                 else:
                     template_paragraph.runs[template_run_count] = new_run
@@ -78,10 +79,7 @@ for template_table_count,template_table in enumerate(template_tables):
                                 update_table_run["paragraph"] == template_table_paragraph_count and \
                                 update_table_run["run"] == template_table_run_count:
                             new_run = rebuild_run(template_table_run, term_dictionary)
-                            if new_run.text == '\n' or new_run.text == '' or new_run.text == '\r':
-                                template_table_run.clear()
-                            else:
-                                template_table_paragraph.runs[template_table_run_count] = new_run
+                            template_table_paragraph.runs[template_table_run_count] = new_run
 
 output_filename_template=template_entry.output_filename
 output_filename_entry = [output_filename_template]

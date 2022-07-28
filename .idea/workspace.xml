@@ -8,12 +8,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32b65844-eb5f-4afb-9470-043fd528241b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/find_whitespace.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/22XX-000000 - John Smith.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ABC Property Management, LLC - Judgment.docx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Judgment (Money) - Jackson County (BRB).docx" beforeDir="false" afterPath="$PROJECT_DIR$/Judgment (Money) - Jackson County (BRB).docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Judgment - Missouri.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Judgment - Missouri.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/document_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/document_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/find_whitespace.py" beforeDir="false" afterPath="$PROJECT_DIR$/find_whitespace.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rebuild_run.py" beforeDir="false" afterPath="$PROJECT_DIR$/rebuild_run.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
